@@ -1,14 +1,16 @@
 import './App.css';
-import Greeting from './components/Greeting';
-import Message  from './components/Message'; 
+import Greet from './components/Greet';
+import Welcome from './components/Welcome';
+
+
 function App() {
   
   return (
-    <>
-      <Greeting />
-      <Message name="caroline" message="hello everyone" />
-    </>
-  )
-};
+    <div className="App">
+      <Greet></Greet>
+      <Welcome/>
+    </div>
+  );
+}
 
 export default App;
