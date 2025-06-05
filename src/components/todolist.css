@@ -1,6 +1,7 @@
 *{
   padding: 0%;
   margin: 0%;
+  border: none;
 }
 
 
@@ -49,6 +50,7 @@
   border-radius: 2rem;
   display: flex;
   justify-content: space-between;
+  margin: 0.4rem 0;
 }
 
 
@@ -100,6 +102,10 @@ input:checked + .slider {
 
 input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
+  border: 0 none #fff;
+}
+.InputBox:focus{
+  border: none;
 }
 
 input:checked + .slider:before {

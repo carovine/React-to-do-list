@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useReducer } from 'react';
+import React, { useState, useEffect, useContext, useReducer,useRef } from 'react';
 import './todolist.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
@@ -24,6 +24,14 @@ const Todolist = () => {
       return [];
     }
   });
+
+  const inputRef = useRef(null)
+
+  useEffect(()=>
+  {
+    inputRef.current.focus()
+  }
+  ,[])
 
   const [theme, dispatch] = useReducer(reducer, 0); // 0: light, 1: dark
   const name = useContext(NameContext);
@@ -54,19 +62,12 @@ const Todolist = () => {
     <div className={`Container ${theme === 1 ? 'dark' : 'light'}`}>
       <h1>{name}'s To-Do List</h1>
 
-      <label className="switch">
-        <input 
-          type="checkbox" 
-          checked={theme === 1} 
-          onChange={() => dispatch({ type: 'TOGGLE' })}
-        />
-        <span className="slider round"></span>
-      </label>
-
       <div className='header'>
         <input 
           type="text" 
+          ref={inputRef}
           value={value} 
+          className='InputBox'
           onChange={inputEnter} 
           onKeyDown={(e) => e.key === 'Enter' && addTask()} 
         />
@@ -83,14 +84,19 @@ const Todolist = () => {
                 icon={faTrash} 
                 style={{ color: "#000000", cursor: "pointer" }} 
               />
-              {/* <FontAwesomeIcon 
-                icon={faPenToSquare} 
-                style={{ color: "#000000", cursor: "pointer" }} 
-              /> */}
+              
             </div>
           </div>
         ))}
       </div>
+      <label className="switch">
+        <input 
+          type="checkbox" 
+          checked={theme === 1} 
+          onChange={() => dispatch({ type: 'TOGGLE' })}
+        />
+        <span className="slider round"></span>
+      </label>
     </div>
   );
 };
